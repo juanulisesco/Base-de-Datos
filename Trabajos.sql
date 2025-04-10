@@ -422,3 +422,68 @@ end //
 delimiter;
 call ordenarnum (@canti);
 select @canti;
+
+#Cursores:
+
+#9)
+delimiter //
+create procedure getCiudadesOffices (out listadooficinas varchar(4000))
+begin
+declare hayFilas boolean default 1;
+declare ciudadObtenida varchar(45) default "";
+declare ciudadesCursor cursor for select city from offices;
+declare continue handler for not found set hayFilas = 0;
+set listadooficinas= "";
+open ciudadesCursor;
+officesLoop:loop
+fetch ciudadesCursor into ciudadObtenida;
+if hayFilas = 0 then
+leave officesLoop;
+end if;
+set listadooficinas = concat(ciudadObtenida, ", ", listadooficinas);
+end loop officesLoop;
+close ciudadesCursor;
+end//
+delimiter ;
+
+call getCiudadesOffices(@lista);
+select @lista;
+drop procedure getCiudadesOffices;
+
+#10)
+
+CREATE TABLE CancelledOrders (
+  orderNumber int,
+  orderDate date NOT NULL,
+  shippedDate date DEFAULT NULL,
+  customerNumber int NOT NULL,
+  PRIMARY KEY (orderNumber),
+  FOREIGN KEY (customerNumber) REFERENCES customers (customerNumber)
+);
+
+delimiter //
+create procedure insertCancelledOrders (out cantidad int)
+begin
+declare hayFilas boolean default 1;
+declare orderN int;
+declare orderD date;
+declare enviado date;
+declare clienteN int;
+declare ordenesCanceladas cursor for select orderNumber , orderDate , shippedDate , customerNumber 
+from orders where status = "Cancelled" ;
+declare continue handler for not found set hayFilas = 0;
+select count(orderNumber) into cantidad from orders where status = "Cancelled" ;
+open ordenesCanceladas;
+orderLoop:loop
+fetch ordenesCanceladas into orderN, orderD, enviado, clienteN;
+if hayFilas = 0 then
+leave orderLoop;
+end if;
+insert into CancelledOrders values( orderN , orderD , enviado , clienteN);
+end loop orderLoop ;
+close ordenesCanceladas;
+end//
+delimiter ;
+
+call insertCancelledOrders(@canti);
+select @canti; 
