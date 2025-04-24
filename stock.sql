@@ -681,6 +681,18 @@ end //
 delimiter ;
 delete from cliente where cantidades(codCliente)<=0;
 
+#Triggers
+
+#1) 
+delimiter //
+create trigger a_pedido_producto_u after update on pedido_producto for each row
+begin
+update ingresostock_producto set cantidad = cantidad - new.cantidad 
+where Producto_codProducto = new.Producto_codProducto;
+end//
+delimiter ;	
+
+#2)
 
 
 
