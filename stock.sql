@@ -694,5 +694,88 @@ delimiter ;
 
 #2)
 
+#////////////////////////////////////////
+#Cursores repaso
 
+#1))
 
+delimiter //
+create procedure ingresoSemanal()
+begin 
+declare hayfilas boolean default 1;
+declare codP int;
+declare cant int;
+declare ingresoCursor cursor for select codProducto,cantidad from ingresostock 
+	join ingresostock_producto on idIngreso = IngresoStock_idIngreso  
+	join producto on ingresostock_producto.Producto_codProducto = codProducto 
+	where week(fecha) = week(current_date()); 
+declare continue handler for not found set hayFilas = 0;
+open ingresoCursor;
+	bucle: loop
+		fetch ingresoCursor into codP, cant;
+        if hayfilas= 0 then
+			leave bucle; 
+        end if;	
+    update producto set stock = stock + cant where codProducto = codP;
+	end loop;
+close ingresoCursor;
+end //
+delimiter ;   
+
+#2) 
+delimiter //
+create procedure menosPrecio()
+begin
+declare hayfilas boolean default 1; 
+declare cant int;
+declare prodCod int;
+declare reductorCursor cursor for select sum(cantidad) , producto.codProducto
+	from producto 
+    join pedido_producto on producto.codProducto= Pedido_producto.codProducto 
+    join pedido on pedido_producto.Pedido_idPedido = pedido.idPedido
+    where week(fecha) = week(current_date())
+    group by producto.codProducto
+    having sum(cantidad) < 100; 
+declare continue handler for not found set hayfilas= 0;
+open reductorCursor;
+    bucle : loop
+		fetch reductorCursor into cant, prodCod;
+			if hayfilas = 0 then
+				leave bucle;
+			end if; 
+		update producto set precio = precio - precio * 10 / 100 where codProducto = prodcod;
+    end loop;
+close reductorCursor;
+end //
+delimiter ; 
+
+#3)
+delimiter //
+create procedure mayorPrecio()
+begin
+declare hayfilas boolean default 1; 
+declare prod_proveCod int;
+declare aumentadorCursor cursor for select Producto_codProducto
+	from Proveedor_idProveedor 
+    join producto on Producto_codProducto= codProducto;
+declare continue handler for not found set hayfilas= 0;
+open aumentadorCursor;
+    bucle : loop
+		fetch aumentadorCursor into prod_proveCod ;
+			if hayfilas = 0 then
+				leave bucle;
+			end if; 
+		update producto set precio = precio + precio * 0.10
+			where codProducto = prodcod;
+    end loop;    
+close aumentadorCursor;
+end //
+delimiter ; 
+
+#4)
+delimiter //
+create procedure()
+begin
+	create cantingcursor cursor for select producto_proveedor.precio, 
+end //
+delimiter ;
