@@ -186,3 +186,146 @@ delimiter //
 	end//
 delimiter ;
 call asignarempleados();
+
+#stock))
+
+#1))
+delimiter //
+	create procedure ingresoSemanal()
+	begin 
+		declare hayfilas boolean default 1;
+		declare codP int;
+		declare cant int;
+		declare ingresoCursor cursor for select codProducto,cantidad from ingresostock 
+			join ingresostock_producto on idIngreso = IngresoStock_idIngreso  
+			join producto on ingresostock_producto.Producto_codProducto = codProducto 
+			where week(fecha) = week(current_date()); 
+		declare continue handler for not found set hayFilas = 0;
+		open ingresoCursor;
+			bucle: loop
+				fetch ingresoCursor into codP, cant;
+				if hayfilas= 0 then
+					leave bucle; 
+				end if;	
+				update producto set stock = stock + cant where codProducto = codP;
+			end loop;
+		close ingresoCursor;
+	end //
+delimiter ;   
+call ingresoSemanal();
+
+#2) 
+delimiter //
+	create procedure menosPrecio()
+	begin
+		declare hayfilas boolean default 1; 
+		declare cant int;
+		declare prodCod int;
+		declare reductorCursor cursor for select sum(cantidad) , producto.codProducto
+			from producto 
+			join pedido_producto on producto.codProducto= Pedido_producto.codProducto 
+			join pedido on pedido_producto.Pedido_idPedido = pedido.idPedido
+			where week(fecha) = week(current_date())
+			group by producto.codProducto
+			having sum(cantidad) < 100; 
+		declare continue handler for not found set hayfilas= 0;
+		open reductorCursor;
+			bucle : loop
+				fetch reductorCursor into cant, prodCod;
+				if hayfilas = 0 then
+					leave bucle;
+				end if; 
+				update producto set precio = precio - precio * 10 / 100 where codProducto = prodcod;
+			end loop;
+		close reductorCursor;
+	end //
+delimiter ; 
+call menosPrecio();
+
+#3)
+
+delimiter //
+	create procedure mayorPrecio()
+	begin
+		declare hayfilas boolean default 1; 
+		declare prod_proveCod int;
+		declare aumentadorCursor cursor for select Producto_codProducto
+			from Proveedor_idProveedor 
+			join producto on Producto_codProducto= codProducto;
+		declare continue handler for not found set hayfilas= 0;
+		open aumentadorCursor;
+			bucle : loop
+				fetch aumentadorCursor into prod_proveCod ;
+				if hayfilas = 0 then
+					leave bucle;
+				end if; 
+				update producto set precio = precio + precio * 0.10
+					where codProducto = prodcod;
+			end loop;    
+		close aumentadorCursor;
+	end //
+delimiter ; 
+call mayorPrecio();
+
+#4))
+
+delimiter //
+	create procedure actualizar_nivel_proveedores()
+	begin
+		declare hayfilas boolean default 1; 
+		declare v_proveedor_id int;
+		declare v_cantidad_ingresos int;
+		declare v_nivel varchar(10);
+		declare fecha_limite date;
+		declare cur_proveedores cursor for select idProveedor from proveedor;
+		declare continue handler for not found set hayfilas= 0;
+		set fecha_limite = date_sub(curdate(), interval 2 month);
+		open cur_proveedores;
+			bucle: loop
+				fetch cur_proveedores into v_proveedor_id;
+				if done then
+					leave bucle;
+				end if;
+				select count(*) into v_cantidad_ingresos from ingresostock 
+					where idProveedor = v_proveedor_id and fecha >= fecha_limite;
+				if v_cantidad_ingresos <= 50 then
+					set v_nivel = 'bronce';
+				elseif v_cantidad_ingresos <= 100 then
+					set v_nivel = 'plata';
+				else
+					set v_nivel = 'oro';
+				end if;
+				update proveedores set nivel = v_nivel where idProveedor = v_proveedor_id;
+			end loop;
+		close cur_proveedores;
+	end//
+delimiter ;
+call actualizar_nivel_proveedores();
+
+#5))
+
+delimiter //
+	create procedure actualizar_precio_unitario()
+	begin
+		declare hayfilas boolean default 1; 
+		declare v_pedido_id int;
+		declare v_producto_id int;
+		declare v_precio_actual decimal(10,2);
+		declare cur_detalles cursor for select Pedido_idPedido, Producto_codProducto
+			from pedido_producto join pedido on Pedido_idPedido = idPedido join estado 
+			on Estado_idEstado = idEstado where nombre = 'pendiente';
+		declare continue handler for not found set hayfilas= 0;
+		open cur_detalles;
+			bucle: loop
+				fetch cur_detalles into v_pedido_id, v_producto_id;
+				if hayfilas then
+					leave bucle;
+				end if;
+				select precio into v_precio_actual from productos 
+					where codProducto = v_producto_id;
+				update pedido_producto set precio = v_precio_actual 
+					where idPedido = v_pedido_id and codProducto = v_producto_id; 
+			end loop;
+		close cur_detalles;
+	end//
+delimiter ;
