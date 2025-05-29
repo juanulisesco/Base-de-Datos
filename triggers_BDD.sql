@@ -104,3 +104,49 @@ drop trigger BPD;
 #stock/
 
 #1)
+delimiter //
+	create trigger a_pedido_producto_u after update on pedido_producto for each row
+	begin
+		update ingresostock_producto set cantidad = cantidad - new.cantidad 
+			where Producto_codProducto = new.Producto_codProducto;
+	end//
+delimiter ;	
+
+#2)
+delimiter // 
+	create trigger b_ingreso_stock_d before delete on ingresostock for each row
+    begin
+		delete from ingresostock_producto
+			where ingresostock_producto.IngresoStock_idIngreso= ingresostock.idIngreso;
+	end//
+delimiter ;
+
+#3)
+delimiter //
+	create trigger a_clientes_categoria_u after insert on pedido for each row
+    begin
+		declare total int default 0;
+        declare categoria varchar(10);
+        select sum( cantidad * precioUnitario) into total from pedido_producto join pedido on
+			pedido_producto.Pedido_idPedido = pedido.idPedido join cliente on 
+            Cliente_codCliente = codCliente where old.idPedido = pedido.idPedido;
+		select nombre into catergoria from categoria;
+		if total < 50000 
+			then set categoria="bronce";
+		else if total between 50000 and 100000 
+			then set categoria="plata";
+		else 
+			set categoria="oro";
+		end if;
+        end if;
+    end//
+delimiter ;
+
+#4)
+delimiter //
+	create trigger a_ingresostock_producto_i after insert on ingresostock_producto for each row
+    begin
+		update producto set producto.stock = old.cantidad
+			where old.Producto_codProducto = producto.codProducto;
+	end//
+delimiter ;
