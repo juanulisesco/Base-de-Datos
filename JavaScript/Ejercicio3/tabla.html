@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href=".css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tabla</title>
+</head>
+<body>
+    <main>
+        <form action=""><input id="inPUT" type="text"></form>
+        <div"></div>
+    </main>
+  <script>
+
+
+    boton.addEventListener("click", function() {
+
+        var nombre = document.getElementById("inPUT").value;
+        var apellido = document.getElementById("inPUT").value
+        var edad = document.getElementById("inPUT").value;
+        var contraseña = document.getElementById("inPUT").value
+        var numTelefono = document.getElementById("inPUT").value; 
+
+        if(nombre== null || apellido == null || nombre.includes(" ") || apellido.includes(" ")){
+            alert("Esta mal. Debes escribirlo todo junto y sin vacios");
+        }
+        if(contraseña.length <= 6 || contraseña.includes(nombre) || contraseña.includes(apellido) ){
+            alert("Esta mal. Tiene menos de 6 codigos y contiene nombre y apellido");
+        }
+        if(edad< 13 || edad>110){
+            alert("Esta mal. Debes tener mas de 13 o menos de 110 ")
+        }
+        if(numTelefono.length != 11){
+            alert("Esta mal el numero de telefono.")
+        }
+        
+    });
+  </script>
+
+</body>
+</html>

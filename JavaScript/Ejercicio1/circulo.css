@@ -1,0 +1,14 @@
+  #circulo {
+    width: 100px;
+    height: 100px;
+    background-color:black; 
+    border-color: solid grey;
+    border-radius: 50%;
+  }
+  #miBoton {
+    padding: 10px 20px;
+    background-color: #f2f0f0;
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+  }

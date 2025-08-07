@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="circulo.css">
+<title>circulo</title>
+</head>
+<body>
+
+  <div id="circulo"></div>
+  <button id="miBoton">Cambiar color</button>
+
+  <script>
+    const circulo = document.getElementById("circulo");
+    const boton = document.getElementById("miBoton");
+
+    boton.addEventListener("click", function() {
+           if (circulo.style.backgroundColor != "black"){
+            circulo.style.backgroundColor = "red";   
+        }
+        else{
+            circulo.style.backgroundColor = "black";
+        }
+    });
+  </script>
+
+</body>
+</html>
