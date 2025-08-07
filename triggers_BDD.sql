@@ -147,6 +147,6 @@ delimiter //
 	create trigger a_ingresostock_producto_i after insert on ingresostock_producto for each row
     begin
 		update producto set producto.stock = old.cantidad
-			where old.Producto_codProducto = producto.codProducto;
+		where old.Producto_codProducto = producto.codProducto;
 	end//
 delimiter ;
