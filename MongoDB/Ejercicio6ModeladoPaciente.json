@@ -1,29 +1,34 @@
 [
     {
+        "DNI":24247090,
         "nombre":"Serena",
-        "apellido":"Vand",
-        "email":"Pedro@gmail.com",
-        "clave":123,
-        "entrega":[{
-        "calle":"Olazabal1234","ciudad":"Buenos Aires","codigoPostal":"1234","provincia":"BuenosAires" 
-        }]
+        "apellido":"van der Woodsen",
+        "fecha_de_nacimiento":"1991-07-14",
+        "telefono":34612345678,
+        "historial_Medico":[{"numero_historia": "HC-0001"}]
     },
     {
-        "nombre":"Juan",
-        "apellido":"Dominguez",
-        "email":"Juan@gmail.com",
-        "clave":456,
-        "entrega":[{
-            "calle":"Olazabal4567","ciudad":"Buenos Aires","codigoPostal":"4567","provincia":"BuenosAires" 
-        }]
+        "DNI":23575780,
+        "nombre":"Blair",
+        "apellido":"Waldorf",
+        "fecha_de_nacimiento":"1990-11-15",
+        "telefono":12025550173,
+        "historia_clinica":[{"numero_historia": "HC-0002"}]
     },
     {
-        "nombre":"Pedro",
-        "apellido":"Juarez",
-        "email":"Pedro@gmail.com",
-        "clave":123,
-        "entrega":[{
-        "calle":"Olazabal1234","ciudad":"Buenos Aires","codigoPostal":"1234","provincia":"BuenosAires" 
-        }]
+        "DNI":24212150,
+        "nombre":"Chuck",
+        "apellido":"Bass",
+        "fecha_de_nacimiento":"1991-01-19",
+        "telefono":447911123456,
+        "historia_clinica": [{"numero_historia": "HC-0003"}]
+    },
+    {
+        "DNI":25708090,
+        "nombre":"Nate",
+        "apellido":"Archibald",
+        "fecha_de_nacimiento":"1991-04-05",
+        "telefono":505012103000,
+        "historia_clinica": [{"numero_historia": "HC-0004"}]
     }
 ]

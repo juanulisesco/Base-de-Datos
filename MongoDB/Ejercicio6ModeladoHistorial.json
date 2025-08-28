@@ -1,0 +1,57 @@
+[
+    {
+        "numero_historia": "HC-0001",
+        "fecha_inicio": "2025-08-28",
+        "observaciones_generales": "Paciente en buen estado general. Sin antecedentes relevantes.",
+        "registros_medicos": [
+          {"fecha_consulta": "2025-08-28","diagnostico": "Gripe común",
+            "tratamiento": "Reposo y líquidos","medico": "Dr. Juan Pérez"
+          },
+          {"fecha_consulta": "2025-09-05","diagnostico": "Mejora significativa",
+            "tratamiento": "Continuar reposo","medico": "Dra. Laura Gómez"
+          }
+        ]
+    },
+
+    {
+        "numero_historia": "HC-0002",
+        "fecha_inicio": "2025-07-15",
+        "observaciones_generales": "Paciente con antecedentes de hipertensión. Se recomienda control mensual.",
+        "registros_medicos": [
+          {"fecha_consulta": "2025-07-15","diagnostico": "Hipertensión controlada",
+            "tratamiento": "Medicamentos antihipertensivos","medico": "Dr. Carlos Ruiz"
+          },
+          {"fecha_consulta": "2025-08-15","diagnostico": "Presión arterial estable",
+            "tratamiento": "Mantener medicación","medico": "Dr. Carlos Ruiz"
+          }
+        ]
+    },
+
+    {
+        "numero_historia": "HC-0003",
+        "fecha_inicio": "2024-12-03",
+        "observaciones_generales": "Intervención quirúrgica reciente. En recuperación favorable.",
+        "registros_medicos": [
+          {"fecha_consulta": "2024-12-03","diagnostico": "Apendicitis aguda",
+            "tratamiento": "Cirugía laparoscópica","medico": "Dra. María López"
+          },
+          {"fecha_consulta": "2025-01-10","diagnostico": "Recuperación postquirúrgica",
+            "tratamiento": "Rehabilitación física","medico": "Dra. María López"
+          }
+        ]
+    },
+    {
+        "numero_historia": "HC-0004",
+        "fecha_inicio": "2025-01-22",
+        "observaciones_generales": "Historial de alergias a antibióticos. Se recomienda evitar penicilina.",
+        "registros_medicos": [
+          {"fecha_consulta": "2025-01-22","diagnostico": "Infección respiratoria leve",
+            "tratamiento": "Antibiótico alternativo a penicilina","medico": "Dr. Ana Martínez"
+          },
+          {"fecha_consulta": "2025-02-10","diagnostico": "Control y seguimiento",
+            "tratamiento": "Sin cambios","medico": "Dr. Ana Martínez"
+          }
+        ]
+    }
+  ]
+  
