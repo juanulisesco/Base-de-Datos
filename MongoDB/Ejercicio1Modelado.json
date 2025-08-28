@@ -1,0 +1,22 @@
+[
+    {
+        "nombre": "Pedro",
+        "apellido": "Juarez",
+        "email": "Pedro@gmail.com",
+        "nacimiento": "1990-05-09",
+        "puesto": "Pedro",
+        "carnet":{
+            "numero":1, "fechaEmision":"2004-02-01", "fechaVencimiento":"2005-02-01"
+        }
+    },
+    {
+        "nombre": "Mauro",
+        "apellido": "Perez",
+        "email": "Mauro@gmail.com",
+        "nacimiento": "1992-05-09",
+        "puesto": "Mauro",
+        "carnet":{
+            "numero":2, "fechaEmision":"2004-02-01", "fechaVencimiento":"2005-02-01"
+        }
+    }
+]

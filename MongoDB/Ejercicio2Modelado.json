@@ -1,0 +1,20 @@
+[
+    {
+        "nombre":"Pedro",
+        "apellido":"Juarez",
+        "email":"Pedro@gmail.com",
+        "clave":123,
+        "entrega":[{
+            "calle":"Olazabal1234","ciudad":"Buenos Aires","codigoPostal":"1234","provincia":"BuenosAires" 
+        }]
+    },
+    {
+        "nombre":"Juan",
+        "apellido":"Dominguez",
+        "email":"Juan@gmail.com",
+        "clave":456,
+        "entrega":[{
+            "calle":"Olazabal4567","ciudad":"Buenos Aires","codigoPostal":"4567","provincia":"BuenosAires" 
+        }]
+    }
+]
