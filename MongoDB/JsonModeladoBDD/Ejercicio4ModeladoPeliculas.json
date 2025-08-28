@@ -1,9 +1,0 @@
-[
-    {
-        "titulo":"El señor de los anillos",
-        "añoLanzamiento":"2002-04-09",
-        "genero":"Ficcion",
-        "duracion":160,
-        "actores":[{"nombre":"Juan","apellido":"Juarez"}, {"nombre":"Pedro","apellido":"Jimenez"}]
-    }
-]
