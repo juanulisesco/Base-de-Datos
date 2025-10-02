@@ -1,0 +1,64 @@
+[{
+    "dni": 12345678,
+    "nombre": "Pedro",
+    "apellido": "Juarez",
+    "edad":20,
+    "compras": [
+        {
+            "idcompra":1, "fecha":"2024-01-01", "productos":[
+                {"idproducto":11, "descripcion":"Trapo amarillo", "precio": 2000, "cantidadcomprada": 1},
+                {"idproducto":12, "descripcion":"Trapo verde", "precio": 4000, "cantidadcomprada": 3},
+                {"idproducto":13, "descripcion":"Caramelo azul", "precio": 300, "cantidadcomprada": 2}
+            ] 
+        },
+        {
+            "idcompra":8, "fecha":"2023-01-01", "productos":[
+                {"idproducto":11, "descripcion":"Trapo amarillo", "precio": 2000, "cantidadcomprada": 1},
+                {"idproducto":12, "descripcion":"Trapo verde", "precio": 4000, "cantidadcomprada": 3},
+                {"idproducto":13, "descripcion":"Caramelo azul", "precio": 300, "cantidadcomprada": 2}
+            ]
+        }
+    ]
+},
+{
+    "dni": 87456321,
+    "nombre": "Pepe",
+    "apellido": "Rodriguez",
+    "edad":23,
+    "compras": [
+        {
+            "idcompra":2, "fecha":"2024-01-20", "productos":[
+                {"idproducto":14, "descripcion":"Trapo rosa", "precio": 10000, "cantidadcomprada": 4},
+                {"idproducto":12, "descripcion":"Trapo verde", "precio": 4000, "cantidadcomprada": 3},
+                {"idproducto":15, "descripcion":"Palo tung tung", "precio": 1000, "cantidadcomprada": 2}
+            ] 
+        },
+        {
+            "idcompra":9, "fecha":"2000-10-12", "productos":[
+                {"idproducto":19, "descripcion":"Tralalero tralala", "precio": 5000, "cantidadcomprada": 1}
+                ]
+        }
+    ]
+},
+{
+    "dni": 21365874,
+    "nombre": "Martin",
+    "apellido": "Alvarez",
+    "edad":15,
+    "compras": [
+        {
+            "idcompra":3, "fecha":"2024-10-02", "productos":[
+                {"idproducto":11, "descripcion":"Trapo amarillo", "precio": 2000, "cantidadcomprada": 1},
+                {"idproducto":16, "descripcion":"Hinodoro dorado", "precio": 8000, "cantidadcomprada": 3},
+                {"idproducto":13, "descripcion":"Caramelo azul", "precio": 300, "cantidadcomprada": 2}
+            ] 
+        },
+        {
+            "idcompra":7, "fecha":"2025-10-1", "productos":[
+                {"idproducto":20, "descripcion":"Palo de madera", "precio": 10, "cantidadcomprada": 1},
+                {"idproducto":99, "descripcion":"Baculo dorado", "precio": 1000000, "cantidadcomprada": 1}
+            ]
+        }
+    ]
+}  
+]

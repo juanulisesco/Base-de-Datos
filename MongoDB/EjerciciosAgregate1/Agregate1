@@ -1,0 +1,5 @@
+1)db.Supermercado.aggregate([{ $group: { _id: null , promedio: { $avg: "$edad" }}}])
+2)db.Supermercado.aggregate([{ $unwind: "$compras" },{ $unwind: "$compras.productos" },{ $group: { _id: "$compras.productos.idproducto", totalUnidades: { $sum: "$compras.productos.cantidadcomprada"}}}])
+	3)db.Supermercado.aggregate([{ $unwind: "$compras" },{ $unwind: "$compras.productos" },{ $group{ _id:"$compras.productos.idproducto", precio: { $sum: "$compras.productos.precio"}}}])
+4)db.Supermercado.aggregate([{$project:{dni: 1, cantidad_compras: {$size: "$compras"}}}, {$match:{cantidad_compras: {$gt: 2}}}])
+
